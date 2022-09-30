@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MyorbService } from 'src/app/services/myorb.service';
 import { FormControl, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './snomed-ct.component.html',
   styleUrls: ['./snomed-ct.component.scss']
 })
-export class SnomedCtComponent implements OnInit {
+export class SnomedCtComponent implements OnInit, OnDestroy {
   gridData: [] = [];
   filterControl = new FormControl('', [Validators.minLength(3)]);
   subscription: Subscription;

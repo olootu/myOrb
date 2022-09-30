@@ -8,7 +8,7 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
   templateUrl: './snomed-table-grid.component.html',
   styleUrls: ['./snomed-table-grid.component.scss']
 })
-export class SnomedTableGridComponent implements OnInit, OnChanges {
+export class SnomedTableGridComponent implements OnChanges {
   @Input() gridData: [];
   @ViewChild(DataTableDirective, { static: false }) dtElement: DataTableDirective;
 
@@ -16,9 +16,6 @@ export class SnomedTableGridComponent implements OnInit, OnChanges {
 
 
   constructor(public dialog: MatDialog) { }
-
-  ngOnInit() {
-  }
 
   dataTablesOptions() {
     this.dtOptions = {
