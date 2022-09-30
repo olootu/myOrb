@@ -1,0 +1,16 @@
+.flex-container {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items:  center;
+}
+
+.footer {
+    border-top: 1px solid #ccc;
+}
+
+.label-txt {
+    font-weight: 700;
+    padding-right: 30px;
+    width: 200px;
+}
