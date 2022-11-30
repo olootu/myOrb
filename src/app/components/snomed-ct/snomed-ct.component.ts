@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MyorbService } from 'src/app/services/myorb.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-snomed-ct',
@@ -9,7 +8,6 @@ import { Subscription } from 'rxjs';
 })
 export class SnomedCtComponent implements OnInit {
   gridData: [] = [];
-  subscription: Subscription;
 
   constructor(private http: MyorbService) { }
 
