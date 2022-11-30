@@ -25,10 +25,10 @@ export class SnomedTableGridComponent implements OnChanges {
       buttons: 'Blftlpi',
       "oLanguage": {
 
-        "sSearch": "Quick Table Filter:"
+        "sSearch": "Search:"
 
       },
-      columns: this.configColumn(),
+      columns: this.configColumn2(),
       rowCallback: (row: Node, data: any) => {
         $('td.name-modal', row).off('click').on('click', () => {
           this.openDialog(data);
@@ -37,10 +37,12 @@ export class SnomedTableGridComponent implements OnChanges {
     }
   }
 
-  private configColumn(): DataTables.ColumnSettings[] {
+  private configColumn2(): DataTables.ColumnSettings[] {
     return [
-      { data: null, className: 'name-modal', defaultContent: '-', render: (data, _, full): string => '<div>' + full.term + '</div>' },
-      { data: null, defaultContent: '-', render: (data, _, full): string => full.module }
+      { data: null, className: 'name-modal', defaultContent: '-', render: (data, _, full): string => full.firstName + " " + full.lastName },
+      { data: null, defaultContent: '-', render: (data, _, full): string => full.department },
+      { data: null, defaultContent: '-', render: (data, _, full): string => full.department === 'Finance' ? full.email : '-' },
+      { data: null, defaultContent: '-', render: (data, _, full): string => full.department === 'IT' ? full.tel : '-' }
     ]
   }
 
@@ -60,6 +62,7 @@ export class SnomedTableGridComponent implements OnChanges {
       })
     }
   }
+
   openDialog(data: any) {
     const dialogRef = this.dialog.open(ModalComponent, {
       height: '50%',

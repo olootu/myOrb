@@ -1,8 +1,7 @@
 <div class="snomed mt-4">
-  <div class="filter-input">Enter a value to get relevant Snomed CT Procedures (minimum 3 character): </div> <input
-    class="form-control filter-input" [ngClass]="{'text-danger': formfilterControl.invalid}"
-    [formControl]='filterControl'>
-
+  <div>
+    <button class="btn btn-primary" type="button" (click)="logData()">Log Data</button>
+  </div>
   <div class="grid-table">
     <app-snomed-table-grid [gridData]="gridData"></app-snomed-table-grid>
   </div>

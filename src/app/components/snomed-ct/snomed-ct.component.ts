@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MyorbService } from 'src/app/services/myorb.service';
-import { FormControl, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,38 +7,24 @@ import { Subscription } from 'rxjs';
   templateUrl: './snomed-ct.component.html',
   styleUrls: ['./snomed-ct.component.scss']
 })
-export class SnomedCtComponent implements OnInit, OnDestroy {
+export class SnomedCtComponent implements OnInit {
   gridData: [] = [];
-  filterControl = new FormControl('', [Validators.minLength(3)]);
   subscription: Subscription;
 
-  constructor(private myOrb: MyorbService) { }
+  constructor(private http: MyorbService) { }
 
   ngOnInit() {
-    this.getSnomedCT();
-    this.subscription = this.filterControl.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    )
-      .subscribe(value => {
-        if (value.length > 2) {
-          this.getSnomedCT(value);
-        }
+    this.getEmployees();
+  }
+
+  getEmployees() {
+    this.http.getEmployees()
+      .subscribe(res => {
+        this.gridData = res;
       })
   }
 
-  getSnomedCT(term = 'ultrasound head') {
-    this.myOrb.getSnomeCT(term)
-      .subscribe((response: any) => {
-        this.gridData = response.items;
-      });
-  }
-  get formfilterControl(): any {
-    return this.filterControl;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-
+  logData() {
+    console.log(this.gridData);
   }
 }

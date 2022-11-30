@@ -7,7 +7,8 @@ import { MyorbService } from './myorb.service';
 describe('Service: Myorb', () => {
   let myOrbService: MyorbService;
   let httpController: HttpTestingController;
-  let reqUrl = 'https://terms.myorb.com:9000/browser/MAIN/descriptions?term=rus&sematicTags=procedure&active=true&conceptActive=true&lang=english&limit=200&offset=0&groupByConcept=true'
+  let reqUrl = 'http://localhost:4200/assets/data.json';
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -31,7 +32,7 @@ describe('Service: Myorb', () => {
   }));
 
   it('should get the getSnomeCT() and use GET method', inject([MyorbService], (service: MyorbService) => {
-    myOrbService.getSnomeCT('rus').subscribe();
+    myOrbService.getEmployees().subscribe();
 
     const testRequest = httpController.expectOne(reqUrl);
     expect(testRequest.request.method).toEqual('GET');
