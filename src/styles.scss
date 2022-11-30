@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dataTables_wrapper {
+    position: relative;
+}
+
+.dataTables_filter {
+    position: absolute;
+    top: -54px;
+    right: 10px;
+}
